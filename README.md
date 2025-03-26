@@ -8,6 +8,13 @@ cd ~/ros2_ws
 source /opt/ros/humble/setup.bash
 ```
 
+## Setup `~/.bashrc`
+> For communication over same network
+```bash
+export ROS_DOMAIN_ID=99
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+```
+
 ## Create custom packages
 ### Create C++ Package
 ```bash
@@ -48,7 +55,7 @@ docker pull dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 ## Run on ROS container with bind mount
 ```bash
-docker run -it --rm \
+sudo docker run -it --rm \
   --runtime nvidia \
   --network host \
   -v ~/Projects/ros2_ws:/workspace \
@@ -57,9 +64,17 @@ docker run -it --rm \
 ## Build ROS workspace
 ```bash
 cd /workspace # root of workspace
+```
+```bash
 rm -rf build install log  # cleans old build artifacts (usually not necessary)
+```
+```bash
 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release # for final build
+```
+```bash
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release # for developing
+```
+```bash
 source install/setup.bash
 ```
 ## Test if running: list available topics
@@ -82,6 +97,16 @@ ros2 run my_python_pkg talker
 ```
 ```bash
 ros2 run my_python_pkg listener
+```
+
+### When running a talker
+#### Check if the topic is created
+```bash
+ros2 topic list
+```
+#### Manually check data throughput
+```bash
+ros2 topic echo chatter
 ```
 
 ![Alt text](public/folder_structure.png)
