@@ -34,7 +34,9 @@ jobs:
         colcon test-result --verbose
 
     - name: Lint Python code
-      if: exists('src')
       run: |
-        # For example, using flake8 on all Python files in your workspace
-        flake8 src
+        if [ -d src ]; then
+          flake8 src
+        else
+          echo "No src directory found, skipping linting."
+        fi
