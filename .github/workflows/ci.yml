@@ -14,8 +14,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Add ROS GPG key manually
+      run: |
+        curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
     - name: Set up ROS2 Humble
-      uses: ros-tooling/setup-ros@v0.2
+      uses: ros-tooling/setup-ros@v0.3
       with:
         required-ros-distributions: humble
 
