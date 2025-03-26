@@ -10,9 +10,14 @@ source /opt/ros/humble/setup.bash
 
 ## Setup `~/.bashrc`
 > For communication over same network
+> `env | grep ROS`
+> check this part and fix the numpy error for running normal ros2 commands
 ```bash
-export ROS_DOMAIN_ID=99
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export ROS_ROOT=/opt/ros/humble
+export ROS_VERSION=2
+export ROS_LOCALHOST_ONLY=0
+export ROS_PYPTHON_VERSION=3
+export ROS_DISTRO=humble
 ```
 
 ## Create custom packages
@@ -62,17 +67,21 @@ sudo docker run -it --rm \
   dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 ## Build ROS workspace
+> Root of workspace
 ```bash
-cd /workspace # root of workspace
+cd /workspace
 ```
+> Cleans old build artifacts (usually not necessary)
 ```bash
-rm -rf build install log  # cleans old build artifacts (usually not necessary)
+rm -rf build install log
 ```
+> For final build
 ```bash
-colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release # for final build
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
+> For developing
 ```bash
-colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release # for developing
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 ```bash
 source install/setup.bash
