@@ -58,7 +58,8 @@ docker run -it --rm \
 ```bash
 cd /workspace # root of workspace
 rm -rf build install log  # cleans old build artifacts (usually not necessary)
-colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release # for final build
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release # for developing
 source install/setup.bash
 ```
 ## Test if running: list available topics

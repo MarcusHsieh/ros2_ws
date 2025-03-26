@@ -10,23 +10,21 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-###
-# include_directories(include)
-find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
-
-include_directories(
-  ${rclcpp_INCLUDE_DIRS}
-  ${std_msgs_INCLUDE_DIRS}
-)
-
 # define the talker executable
 add_executable(talker_node src/talker.cpp)
 ament_target_dependencies(talker_node rclcpp std_msgs)
+target_include_directories(talker_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
 
 # define the listener executable
 add_executable(listener_node src/listener.cpp)
 ament_target_dependencies(listener_node rclcpp std_msgs)
+target_include_directories(listener_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
 
 # install executables and header files
 install(TARGETS
@@ -34,7 +32,10 @@ install(TARGETS
   listener_node
   DESTINATION lib/${PROJECT_NAME}
 )
-###
+
+install(DIRECTORY include/
+  DESTINATION include/
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
