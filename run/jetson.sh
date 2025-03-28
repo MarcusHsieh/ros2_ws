@@ -22,7 +22,7 @@ echo "Host Workspace: ${HOST_WS_PATH}"
 echo "Container Workspace: ${CONTAINER_WS_PATH}"
 echo "Host XML Config: ${HOST_XML_PATH}"
 echo "Container XML Config: ${CONTAINER_XML_PATH}"
-echo "Using Laptop IP: ${LAPTOP_IP} in XML (Ensure ${HOST_XML_PATH} contains this IP!)"
+echo "Using Laptop IP: ${LAPTOP_IP} in XML (CHECK: ${HOST_XML_PATH} contains this IP!)"
 echo "Using ROS_DOMAIN_ID: ${ROS_DOMAIN_ID_TO_USE}"
 echo "Using Docker Image: ${DOCKER_IMAGE}"
 echo "----------------------------------------"
@@ -50,7 +50,7 @@ docker run -it --rm \
     -v "${HOST_WS_PATH}:${CONTAINER_WS_PATH}" \
     -v "${HOST_XML_PATH}:${CONTAINER_XML_PATH}" \
     -e ROS_DOMAIN_ID=${ROS_DOMAIN_ID_TO_USE} \
-    -e FASTRTPS_DEFAULT_PROFILES_FILE=${CONTAINER_XML_PATH} \
+    # -e FASTRTPS_DEFAULT_PROFILES_FILE=${CONTAINER_XML_PATH} \
     ${DOCKER_IMAGE}
 
 echo "--- Docker container exited ---"
