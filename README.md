@@ -12,13 +12,32 @@ source /opt/ros/humble/setup.bash
 > For communication over same network
 > `env | grep ROS`
 > check this part and fix the numpy error for running normal ros2 commands
+> This should be in ~/.bashrc for all machines
+> `super_client.xml` might be wrong
 ```bash
 export ROS_ROOT=/opt/ros/humble
 export ROS_VERSION=2
 export ROS_LOCALHOST_ONLY=0
 export ROS_PYPTHON_VERSION=3
 export ROS_DISTRO=humble
+export ROS_DOMAIN_ID=30
+export FASTRTPS_DEFAULT_PROFILES_FILE=~/ros2_ws/super_client.xml
 ```
+
+## Setup Fast DDS Discovery Server 
+> Fast DDS Utilities
+```bash
+sudo apt update
+sudo apt install ros-humble-fastrtps* -y 
+```
+### Configuration File
+> `super_client.xml`
+### Run discovery server
+> Starts server on default port 11811
+```bash
+fastdds discovery -i 0
+```
+
 
 ## Create custom packages
 ### Create C++ Package
@@ -59,11 +78,12 @@ ros2 pkg create my_python_pkg --dependencies rclpy std_msgs --build-type ament_p
 docker pull dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 ## Run on ROS container with bind mount
+> https://hub.docker.com/r/dustynv/ros/tags?name=humble
 ```bash
 sudo docker run -it --rm \
   --runtime nvidia \
   --network host \
-  -v ~/Projects/ros2_ws:/workspace \
+  -v ~/ros2_ws:/workspace \
   dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 ## Build ROS workspace

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_profiles">
+    <participant profile_name="super_client_profile" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <discovery_config>
+                    <discoveryProtocol>SUPER_CLIENT</discoveryProtocol>
+                    <remote_servers>
+                        <locator>
+                            <tcpv4>
+                                <address>192.168.0.7</address> <!-- <<< CHANGE THIS TO LAPTOP IP -->
+                                <port>11811</port>         <!-- Default discovery server port -->
+                            </tcpv4>
+                        </locator>
+                    </remote_servers>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
+</profiles>
