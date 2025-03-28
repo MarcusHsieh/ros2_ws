@@ -1,6 +1,6 @@
 
 # Setup
-> You should install ROS2 Humble first.
+> You should install ROS2 Humble on your PC first.
 
 ## Initial local setup for workspace
 > Before getting packages
@@ -12,7 +12,7 @@ cd ~/ros2_ws
 ## Setup `~/.bashrc`
 > This should be in ~/.bashrc for all machines  
 > Only `ROS_DOMAIN_ID` is required for the jetson nano (the rest is set automatically from the docker image)  
-> To manually add (laptop): `sudo nano ~/.bashrc`  
+> To manually add (PC): `sudo nano ~/.bashrc`  
 > To check: `env | grep ROS`
 ```bash
 # Source ROS2 Humble environment
@@ -107,7 +107,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
 ```
 
-# Test if running (laptop + Jetson Nano)
+# Test if running (PC + Jetson Nano)
 
 ## Test with listener and talker nodes
 ### C++
