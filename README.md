@@ -70,6 +70,13 @@ ros2 pkg create my_python_pkg --dependencies rclpy std_msgs --build-type ament_p
 docker pull dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 
+## Clone this repository
+> Clone into root (preferred)  
+> OR clone somewhere else and edit `/run/jetson.sh` paths
+```bash
+git clone https://github.com/MarcusHsieh/ros2_ws.git
+```
+
 ## Run on ROS container with bind mount
 > https://hub.docker.com/r/dustynv/ros/tags?name=humble
 
