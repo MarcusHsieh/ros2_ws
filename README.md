@@ -10,10 +10,8 @@ source /opt/ros/humble/setup.bash
 
 ## Setup `~/.bashrc`
 > For communication over same network
-> `env | grep ROS`
-> check this part and fix the numpy error for running normal ros2 commands
 > This should be in ~/.bashrc for all machines
-> `super_client.xml` might be wrong
+> To check: `env | grep ROS`
 ```bash
 export ROS_ROOT=/opt/ros/humble
 export ROS_VERSION=2
@@ -21,23 +19,7 @@ export ROS_LOCALHOST_ONLY=0
 export ROS_PYPTHON_VERSION=3
 export ROS_DISTRO=humble
 export ROS_DOMAIN_ID=30
-export FASTRTPS_DEFAULT_PROFILES_FILE=~/ros2_ws/super_client.xml
 ```
-
-## Setup Fast DDS Discovery Server 
-> Fast DDS Utilities
-```bash
-sudo apt update
-sudo apt install ros-humble-fastrtps* -y 
-```
-### Configuration File
-> `super_client.xml`
-### Run discovery server
-> Starts server on default port 11811
-```bash
-fastdds discovery -i 0
-```
-
 
 ## Create custom packages
 ### Create C++ Package
@@ -51,7 +33,7 @@ ros2 pkg create my_python_pkg --dependencies rclpy std_msgs --build-type ament_p
 ```
 
 ## You should have a `.vscode/c_cpp_properties.json` at root of workspace
-> This removes any issues with including ROS headers
+> This removes any issues with including ROS headers in code
 ```json
 {
     "configurations": [
@@ -78,6 +60,10 @@ ros2 pkg create my_python_pkg --dependencies rclpy std_msgs --build-type ament_p
 docker pull dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 ## Run on ROS container with bind mount
+> Updated run command:
+```bash
+./run/jetson.sh
+```
 > https://hub.docker.com/r/dustynv/ros/tags?name=humble
 ```bash
 sudo docker run -it --rm \
@@ -91,7 +77,7 @@ sudo docker run -it --rm \
 ```bash
 cd /workspace
 ```
-> Cleans old build artifacts (usually not necessary)
+> Cleans old build artifacts (use if colcon build fails)
 ```bash
 rm -rf build install log
 ```
