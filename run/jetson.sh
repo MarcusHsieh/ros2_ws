@@ -6,7 +6,7 @@ set -e
 echo "--- Setting up variables for Docker ---"
 
 # Define paths for clarity
-HOST_WS_PATH=~/ros2_docker_ws
+HOST_WS_PATH=~/ros2_ws
 CONTAINER_WS_PATH=/ros2_ws
 HOST_XML_PATH="${HOST_WS_PATH}/super_client.xml"
 CONTAINER_XML_PATH="${CONTAINER_WS_PATH}/super_client.xml"
@@ -45,6 +45,7 @@ echo "--- Pre-run checks passed ---"
 echo "--- Launching Docker Container ---"
 # Run the docker container
 docker run -it --rm \
+    --runtime nvidia \
     --net=host \
     -v "${HOST_WS_PATH}:${CONTAINER_WS_PATH}" \
     -v "${HOST_XML_PATH}:${CONTAINER_XML_PATH}" \

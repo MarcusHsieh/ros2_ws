@@ -83,7 +83,7 @@ docker pull dustynv/ros:humble-ros-core-l4t-r32.7.1
 sudo docker run -it --rm \
   --runtime nvidia \
   --network host \
-  -v ~/ros2_ws:/workspace \
+  -v ~/ros2_ws:/ros2_ws \
   dustynv/ros:humble-ros-core-l4t-r32.7.1
 ```
 ## Build ROS workspace
