@@ -109,6 +109,29 @@ source install/setup.bash
 
 # Test if running (laptop + Jetson Nano)
 
+## Test with listener and talker nodes
+### C++
+```bash
+ros2 run my_cpp_pkg talker_node
+```
+```bash
+ros2 run my_cpp_pkg listener_node
+```
+
+### Python
+```bash
+ros2 run my_python_pkg talker
+```
+```bash
+ros2 run my_python_pkg listener
+```
+
+### Manual checks
+> When running a talker, you can manually check data throughput
+```bash
+ros2 topic echo chatter
+```
+
 ## Nodes + Topics
 > - [Topic = Bulletin board] [Node = Worker]
 >   - **Analogy**: Where workers can see or post information
@@ -136,32 +159,10 @@ ros2 node list
 ros2 topic list
 ```
 ![alt text](public/topic_list.png)
-## Test with listener and talker nodes
-### C++
-```bash
-ros2 run my_cpp_pkg talker_node
-```
-```bash
-ros2 run my_cpp_pkg listener_node
-```
-
-### Python
-```bash
-ros2 run my_python_pkg talker
-```
-```bash
-ros2 run my_python_pkg listener
-```
-
-### When running a talker
-#### Manually check data throughput
-```bash
-ros2 topic echo chatter
-```
 
 # Interesting observations and findings
 - When running a **Python talker**, **C++ talker**, and **Python listener**
-  - Python listener heard from BOTH Python AND C++ talker => outputting both published informations
+  - Python listener is hearing from BOTH Python AND C++ talker => outputting both published informations
   - This means that even though the language is different, they're still publishing/subscribing to the same node => ROS 2 acting as a neutral middleman
 ![alt text](public/findings1.png)
 
