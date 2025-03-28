@@ -152,4 +152,41 @@ ros2 run my_python_pkg listener
 ros2 topic echo chatter
 ```
 
-![Alt text](public/folder_structure.png)
+# Interesting observations and findings
+- When running a **Python talker**, **C++ talker**, and **Python listener**
+  - Python listener heard from BOTH Python AND C++ talker => outputting both published informations
+  - This means that even though the language is different, they're still publishing/subscribing to the same node => ROS 2 acting as a neutral middleman
+![alt text](public/findings1.png)
+
+# Final folder structure 
+> Only the important bits:
+```python
+└── 📁ros2_ws
+    └── 📁my_cpp_pkg
+        └── CMakeLists.txt # defines and bundles all executables to run
+        └── 📁include
+            └── 📁my_cpp_pkg
+                └── listener.hpp # listener function declarations
+                └── talker.hpp # talker function declarations
+        └── package.xml
+        └── 📁src
+            └── listener.cpp # listener function definitions
+            └── talker.cpp # talker function definitions
+    └── 📁my_python_pkg
+        └── 📁my_python_pkg
+            └── __init__.py
+            └── listener.py # listener script
+            └── talker.py # talker script
+        └── package.xml
+        └── 📁resource
+            └── my_python_pkg
+        └── setup.cfg
+        └── setup.py # setup: runs specified scripts/functions
+        └── 📁test # used for unit tests (optional)
+            └── test_copyright.py
+            └── test_flake8.py
+            └── test_pep257.py
+    └── 📁run
+        └── jetson.sh
+    └── .gitignore
+```
