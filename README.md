@@ -2,16 +2,17 @@
 # Setup
 > You should install ROS2 Humble first.
 
-## Initial local setup for workspace (before getting packages)
+## Initial local setup for workspace
+> Before getting packages
 ```bash
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws
 ```
 
 ## Setup `~/.bashrc`
-> This should be in ~/.bashrc for all machines
-> Only `ROS_DOMAIN_ID` is required for the jetson nano (the rest is set automatically from the docker image)
-> To manually add (laptop): `sudo nano ~/.bashrc` 
+> This should be in ~/.bashrc for all machines  
+> Only `ROS_DOMAIN_ID` is required for the jetson nano (the rest is set automatically from the docker image)  
+> To manually add (laptop): `sudo nano ~/.bashrc`  
 > To check: `env | grep ROS`
 ```bash
 # Source ROS2 Humble environment
@@ -40,7 +41,8 @@ ros2 pkg create my_cpp_pkg --dependencies rclcpp std_msgs --build-type ament_cma
 ros2 pkg create my_python_pkg --dependencies rclpy std_msgs --build-type ament_python --license MIT
 ```
 
-## You should have a `.vscode/c_cpp_properties.json` at root of workspace
+## Fix ROS header issue in VS Code
+> You should have a `.vscode/c_cpp_properties.json` at root of workspace  
 > This removes any issues with including ROS headers in code
 ```json
 {
@@ -89,7 +91,7 @@ rm -rf build install log
 ```bash
 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
-> For developing
+> For developing:  
 > `--symlink-install`: basically compiles only new code 
 ```bash
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
