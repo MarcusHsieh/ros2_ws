@@ -43,7 +43,7 @@ ros2 pkg create my_python_pkg --dependencies rclpy std_msgs --build-type ament_p
 > Apache-2.0 License
 > geometry_msgs for `geometry_msgs/Twist`
 ```bash
-ros2 pkg create moll_e_motor --dependencies rclpy std_msgs geometry_msgs --build-type ament_python --license Apache-2.0
+ros2 pkg create motor --dependencies rclpy std_msgs geometry_msgs --build-type ament_python --license Apache-2.0
 ```
 
 ## Fix ROS header issue in VS Code
